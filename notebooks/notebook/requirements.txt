@@ -1,0 +1,13 @@
+sentence-transformers
+transformers
+torch
+faiss-cpu
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+pyarrow
+tqdm
+jupyter
+notebook
