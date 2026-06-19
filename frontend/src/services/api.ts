@@ -1,30 +1,39 @@
-import axios from "axios";
-
-const API = axios.create({
-  baseURL: "http://127.0.0.1:8000",
-});
+const API_BASE_URL = "http://127.0.0.1:8000/api";
 
 export interface Paper {
-  id: string;
+  id: number;
   title: string;
-  abstract: string;
   authors: string;
-  categories: string;
   year: number;
-  similarity_score: number;
+  abstract: string;
+  categories: string[];
+  similarity: number;
 }
 
 export interface SearchResponse {
-  query: string;
-  total_results: number;
   results: Paper[];
+  total: number;
+  query: string;
 }
 
-export const searchPapers = async (query: string, top_k = 5) => {
-  const response = await API.post<SearchResponse>("/api/search", {
-    query,
-    top_k,
+export async function searchPapers(
+  query: string,
+  topK: number = 10,
+): Promise<SearchResponse> {
+  const response = await fetch(`${API_BASE_URL}/search`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: query,
+      top_k: topK,
+    }),
   });
 
-  return response.data;
-};
+  if (!response.ok) {
+    throw new Error("Failed to fetch search results");
+  }
+
+  return response.json();
+}

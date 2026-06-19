@@ -1,142 +1,131 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Search, Zap, Target, Brain } from "lucide-react";
 
 export default function HomePage() {
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
-
-  const handleSearch = () => {
-    if (!query.trim()) return;
-    navigate(`/search?q=${encodeURIComponent(query)}`);
-  };
+  const popularTopics = [
+    "Transformer",
+    "Large Language Models",
+    "Machine Learning",
+    "Computer Vision",
+    "Reinforcement Learning",
+    "NLP",
+  ];
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
-      <nav className="flex items-center justify-between px-8 py-5 border-b">
-        <div className="font-bold text-xl">DocuSense</div>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-b from-blue-50 to-white pt-16 pb-20">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white border border-blue-200 text-blue-600 text-sm mb-6">
+            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
+            DocuSense Search Engine v2.0 Live
+          </div>
 
-        <div className="flex gap-6 text-sm">
-          <a href="/" className="font-medium">
-            Home
-          </a>
-          <a href="/search">Search</a>
-          <a href="/analytics">Analytics</a>
-          <a href="/about">About</a>
-        </div>
+          <h1 className="text-6xl font-semibold tracking-tighter text-gray-900 mb-4">
+            Search Research Papers
+            <br />
+            <span className="text-blue-600">Intelligently</span>
+          </h1>
 
-        <button className="bg-gray-900 text-white px-4 py-2 rounded-xl">
-          Find Papers
-        </button>
-      </nav>
+          <p className="max-w-2xl mx-auto text-xl text-gray-600 mb-10">
+            Discover AI research using semantic understanding, vector search,
+            and advanced cross-encoder reranking. Find the exact paper you need,
+            even if you don't know the right keywords.
+          </p>
 
-      <section className="text-center mt-20 px-6">
-        <div className="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-sm">
-          DocuSense Search Engine v2.0 Live
-        </div>
+          {/* Search Bar */}
+          <div className="max-w-3xl mx-auto mb-8">
+            <div className="flex items-center bg-white border border-gray-200 rounded-2xl shadow-sm p-2">
+              <div className="flex-1 flex items-center px-5">
+                <Search className="w-5 h-5 text-gray-400 mr-3" />
+                <input
+                  type="text"
+                  placeholder="Search topics like Large Language Models, Transformers..."
+                  className="flex-1 bg-transparent text-lg outline-none placeholder:text-gray-400"
+                />
+              </div>
+              <Link
+                to="/search"
+                className="bg-gray-900 hover:bg-black transition-colors text-white px-8 py-3 rounded-xl font-medium text-sm"
+              >
+                Search Papers
+              </Link>
+            </div>
+          </div>
 
-        <h1 className="text-5xl font-bold mt-6 leading-tight">
-          Search Research Papers
-          <br />
-          <span className="text-blue-600">Intelligently</span>
-        </h1>
-
-        <p className="mt-6 text-gray-500 max-w-2xl mx-auto">
-          Discover AI research using semantic understanding, vector search, and
-          cross-encoder reranking.
-        </p>
-
-        <div className="mt-10 flex justify-center">
-          <div className="flex w-[650px] border rounded-2xl overflow-hidden shadow-sm">
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search topics like Large Language Models, Transformers..."
-              className="flex-1 px-5 py-4 outline-none"
-            />
-            <button
-              onClick={handleSearch}
-              className="bg-blue-600 text-white px-6"
-            >
-              Search Papers
-            </button>
+          {/* Popular Topics */}
+          <div>
+            <div className="text-sm text-gray-500 mb-3 tracking-wider">
+              POPULAR TOPICS
+            </div>
+            <div className="flex flex-wrap justify-center gap-2">
+              {popularTopics.map((topic, index) => (
+                <Link
+                  key={index}
+                  to={`/search?q=${encodeURIComponent(topic)}`}
+                  className="px-5 py-2 bg-white border border-gray-200 hover:border-gray-300 rounded-full text-sm text-gray-700 transition-colors"
+                >
+                  {topic}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
+      </div>
 
-        <div className="flex justify-center gap-3 mt-6 flex-wrap">
-          {[
-            "Transformer",
-            "Large Language Models",
-            "Machine Learning",
-            "Computer Vision",
-            "Reinforcement Learning",
-          ].map((t) => (
-            <span
-              key={t}
-              className="px-4 py-2 bg-gray-100 rounded-full text-sm cursor-pointer"
-              onClick={() => setQuery(t)}
-            >
-              {t}
-            </span>
-          ))}
+      {/* Powered by Advanced AI */}
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-semibold tracking-tight mb-3">
+            Powered by Advanced AI
+          </h2>
+          <p className="text-gray-600 max-w-md mx-auto">
+            Our retrieval pipeline ensures you find the most contextually
+            relevant research, instantly.
+          </p>
         </div>
-      </section>
 
-      <section className="mt-24 px-10">
-        <h2 className="text-center text-xl font-semibold mb-10">
-          Powered by Advanced AI
-        </h2>
-
-        <div className="grid grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <div className="p-6 border rounded-xl">
-            <h3 className="font-semibold">Semantic Embeddings</h3>
-            <p className="text-sm text-gray-500 mt-2">
-              Understand meaning beyond keywords.
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-md transition-shadow">
+            <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+              <Brain className="w-6 h-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3">Semantic Embeddings</h3>
+            <p className="text-gray-600 leading-relaxed">
+              Understand meaning beyond keywords. We convert papers into dense
+              vectors to capture profound conceptual relationships.
             </p>
           </div>
 
-          <div className="p-6 border rounded-xl">
-            <h3 className="font-semibold">FAISS Vector Search</h3>
-            <p className="text-sm text-gray-500 mt-2">
-              Fast similarity search across millions of papers.
+          <div className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-md transition-shadow">
+            <div className="w-12 h-12 bg-cyan-100 rounded-2xl flex items-center justify-center mb-6">
+              <Zap className="w-6 h-6 text-cyan-600" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3">FAISS Vector Search</h3>
+            <p className="text-gray-600 leading-relaxed">
+              Lightning-fast similarity search across our entire corpus of
+              research papers, powered by Facebook AI Similarity Search.
             </p>
           </div>
 
-          <div className="p-6 border rounded-xl">
-            <h3 className="font-semibold">Cross Encoder Reranking</h3>
-            <p className="text-sm text-gray-500 mt-2">
-              Improve ranking accuracy using deep models.
+          <div className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-md transition-shadow">
+            <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+              <Target className="w-6 h-6 text-purple-600" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3">
+              Cross Encoder Reranking
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              Improve search relevance. We re-score initial results using a deep
+              contextual model to put the best papers first.
             </p>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="mt-24 bg-gray-900 text-white py-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-4 text-center">
-          <div>
-            <div className="text-3xl font-bold">343K+</div>
-            <div className="text-sm text-gray-400">Research Papers</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold">7+</div>
-            <div className="text-sm text-gray-400">AI Categories</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold">~15ms</div>
-            <div className="text-sm text-gray-400">Search Speed</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold">BGE-v1.5</div>
-            <div className="text-sm text-gray-400">Embedding Model</div>
-          </div>
-        </div>
-      </section>
-
-      <footer className="px-10 py-10 border-t mt-10 text-sm text-gray-500 flex justify-between">
-        <div>DocuSense - AI Research Discovery Engine</div>
-        <div className="flex gap-6">
-          <span>Search Papers</span>
-          <span>Analytics</span>
-          <span>How it Works</span>
+      <footer className="bg-gray-900 text-gray-400 py-8">
+        <div className="max-w-7xl mx-auto px-6 text-center text-sm">
+          © 2026 DocuSense. All rights reserved.
         </div>
       </footer>
     </div>
