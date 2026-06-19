@@ -1,21 +1,18 @@
 from pydantic import BaseModel
 from typing import List
 
-
 class SearchRequest(BaseModel):
     query: str
     top_k: int = 5
-
 
 class PaperResult(BaseModel):
     id: str
     title: str
     abstract: str
     authors: str
-    categories: str
+    categories: List[str]
     year: int
-    similarity_score: float
-
+    similarity: float
 
 class SearchResponse(BaseModel):
     query: str

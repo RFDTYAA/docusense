@@ -1,7 +1,7 @@
 const API_BASE_URL = "http://127.0.0.1:8000/api";
 
 export interface Paper {
-  id: number;
+  id: string | number;
   title: string;
   authors: string;
   year: number;
@@ -35,5 +35,11 @@ export async function searchPapers(
     throw new Error("Failed to fetch search results");
   }
 
-  return response.json();
+  const data = await response.json();
+
+  return {
+    query: data.query,
+    total: data.total_results || data.total || 0,
+    results: data.results || [],
+  };
 }

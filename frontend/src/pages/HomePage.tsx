@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search, Zap, Target, Brain } from "lucide-react";
 
 export default function HomePage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
   const popularTopics = [
     "Transformer",
     "Large Language Models",
@@ -11,10 +15,23 @@ export default function HomePage() {
     "NLP",
   ];
 
+  const handleSearch = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      navigate("/search");
+    }
+  };
+
+  const handleTopicClick = (topic: string) => {
+    navigate(`/search?q=${encodeURIComponent(topic)}`);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-blue-50 to-white pt-16 pb-20">
+      <div className="bg-linear-to-b from-blue-50 to-white pt-16 pb-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white border border-blue-200 text-blue-600 text-sm mb-6">
             <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
@@ -33,25 +50,27 @@ export default function HomePage() {
             even if you don't know the right keywords.
           </p>
 
-          {/* Search Bar */}
-          <div className="max-w-3xl mx-auto mb-8">
+          {/* Functional Search Bar */}
+          <form onSubmit={handleSearch} className="max-w-3xl mx-auto mb-8">
             <div className="flex items-center bg-white border border-gray-200 rounded-2xl shadow-sm p-2">
               <div className="flex-1 flex items-center px-5">
                 <Search className="w-5 h-5 text-gray-400 mr-3" />
                 <input
                   type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search topics like Large Language Models, Transformers..."
                   className="flex-1 bg-transparent text-lg outline-none placeholder:text-gray-400"
                 />
               </div>
-              <Link
-                to="/search"
+              <button
+                type="submit"
                 className="bg-gray-900 hover:bg-black transition-colors text-white px-8 py-3 rounded-xl font-medium text-sm"
               >
                 Search Papers
-              </Link>
+              </button>
             </div>
-          </div>
+          </form>
 
           {/* Popular Topics */}
           <div>
@@ -60,13 +79,13 @@ export default function HomePage() {
             </div>
             <div className="flex flex-wrap justify-center gap-2">
               {popularTopics.map((topic, index) => (
-                <Link
+                <button
                   key={index}
-                  to={`/search?q=${encodeURIComponent(topic)}`}
-                  className="px-5 py-2 bg-white border border-gray-200 hover:border-gray-300 rounded-full text-sm text-gray-700 transition-colors"
+                  onClick={() => handleTopicClick(topic)}
+                  className="px-5 py-2 bg-white border border-gray-200 hover:border-gray-300 rounded-full text-sm text-gray-700 transition-colors hover:bg-gray-50"
                 >
                   {topic}
-                </Link>
+                </button>
               ))}
             </div>
           </div>
@@ -86,7 +105,8 @@ export default function HomePage() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-md transition-shadow">
+          {/* Semantic Embeddings */}
+          <div className="bg-white border border-gray-200 rounded-3xl p-8 transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
             <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
               <Brain className="w-6 h-6 text-blue-600" />
             </div>
@@ -97,7 +117,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-md transition-shadow">
+          {/* FAISS Vector Search */}
+          <div className="bg-white border border-gray-200 rounded-3xl p-8 transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
             <div className="w-12 h-12 bg-cyan-100 rounded-2xl flex items-center justify-center mb-6">
               <Zap className="w-6 h-6 text-cyan-600" />
             </div>
@@ -108,7 +129,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-md transition-shadow">
+          {/* Cross Encoder Reranking */}
+          <div className="bg-white border border-gray-200 rounded-3xl p-8 transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
             <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
               <Target className="w-6 h-6 text-purple-600" />
             </div>
@@ -122,12 +144,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-
-      <footer className="bg-gray-900 text-gray-400 py-8">
-        <div className="max-w-7xl mx-auto px-6 text-center text-sm">
-          © 2026 DocuSense. All rights reserved.
-        </div>
-      </footer>
     </div>
   );
 }
