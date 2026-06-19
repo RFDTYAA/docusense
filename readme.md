@@ -44,7 +44,7 @@ DocuSense dikembangkan untuk membantu pengguna menemukan literatur yang lebih se
 | Jauhan Ahmad                | Data Engineer             |
 | Nero Caesar Suprobo         | Project Manager & QA      |
 | Raffa Arvel Nafi'Nadindra   | Cloud & Database Engineer |
-| Muhammad Rafi Aditya        | Frontend Engineer         |
+| Muhammad Rafi Aditya        | Full Stack Engineer         |
 
 ---
 
