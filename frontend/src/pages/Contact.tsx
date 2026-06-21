@@ -35,9 +35,7 @@ export default function Contact() {
           </div>
           <button
             type="button"
-            onClick={() =>
-              alert("Thank you! Your message has been received. (Demo)")
-            }
+            onClick={() => alert("Thank you! Your message has been received.")}
             className="w-full bg-gray-900 hover:bg-black text-white py-3.5 rounded-2xl font-medium transition-colors"
           >
             Send Message

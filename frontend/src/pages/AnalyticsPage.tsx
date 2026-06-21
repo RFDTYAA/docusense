@@ -14,7 +14,6 @@ import {
 } from "recharts";
 
 export default function AnalyticsPage() {
-  // === DATA REALISTIS ===
   const stats = {
     totalPapers: 343291,
     categories: 7,
@@ -22,7 +21,6 @@ export default function AnalyticsPage() {
     avgRelevanceScore: 9.42,
   };
 
-  // Search Volume Trends
   const searchTrends = [
     { month: "Jan", searches: 4020 },
     { month: "Feb", searches: 3050 },
@@ -32,7 +30,6 @@ export default function AnalyticsPage() {
     { month: "Jun", searches: 8200 },
   ];
 
-  // Papers Indexed by Year
   const papersByYear = [
     { year: "2017", count: 12 },
     { year: "2018", count: 28 },
@@ -44,7 +41,6 @@ export default function AnalyticsPage() {
     { year: "2024", count: 320 },
   ];
 
-  // Distribution by Category
   const categoryDistribution = [
     { name: "AI", value: 28, color: "#3b82f6" },
     { name: "ML", value: 32, color: "#22d3ee" },
@@ -70,7 +66,7 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      {/* Stats Cards - Sekarang pakai object stats */}
+      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="bg-white border border-gray-200 rounded-3xl p-6">
           <div className="flex justify-between items-start">
@@ -143,7 +139,6 @@ export default function AnalyticsPage() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Search Volume Trends */}
         <div className="bg-white border border-gray-200 rounded-3xl p-6">
           <h3 className="font-semibold mb-4">Search Volume Trends</h3>
           <div className="h-80">

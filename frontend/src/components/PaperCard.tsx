@@ -17,7 +17,6 @@ export default function PaperCard({
   similarity,
   onViewDetail,
 }: PaperCardProps) {
-  // === LOGIC SCORE YANG SAMA DENGAN MODAL ===
   const getDisplayScore = (sim: number, paperId: string | number) => {
     if (sim >= 8) {
       return sim.toFixed(2);

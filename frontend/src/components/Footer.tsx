@@ -70,7 +70,7 @@ export default function Footer() {
       {/* === MAIN FOOTER === */}
       <div className="max-w-7xl mx-auto px-6 pt-12 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-10">
-          {/* Brand (kiri) */}
+          {/* Brand */}
           <div className="md:col-span-5 lg:col-span-5">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center">
@@ -86,11 +86,8 @@ export default function Footer() {
               literature.
             </p>
           </div>
-
-          {/* Spacer (kosong di tengah) */}
           <div className="hidden md:block md:col-span-1 lg:col-span-2"></div>
 
-          {/* PLATFORM - Lurus dengan SEMANTIC SEARCH */}
           <div className="md:col-span-3 lg:col-span-2">
             <div className="font-semibold text-white mb-4 text-sm tracking-wider">
               PLATFORM
@@ -123,7 +120,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* LEGAL - Lurus dengan RETRIEVAL BASE */}
           <div className="md:col-span-3 lg:col-span-3">
             <div className="font-semibold text-white mb-4 text-sm tracking-wider">
               LEGAL

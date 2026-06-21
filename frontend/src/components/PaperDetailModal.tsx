@@ -21,7 +21,6 @@ export default function PaperDetailModal({
   onClose,
   onOpenRelated,
 }: PaperDetailModalProps) {
-  // === LOGIC SCORE YANG SAMA DENGAN PAPERCARD ===
   const { displayScore, semanticMatch } = useMemo(() => {
     if (!paper) return { displayScore: "8.72", semanticMatch: 87 };
 

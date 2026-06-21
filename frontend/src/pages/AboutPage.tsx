@@ -95,7 +95,6 @@ export default function AboutPage() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* BGE Base v1.5 */}
           <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mb-5">
               <span className="text-3xl">🧠</span>
@@ -156,12 +155,10 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Our Team - 3 + 2 staggered */}
       <div>
         <h2 className="text-3xl font-semibold text-center mb-12">Our Team</h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Baris 1 - 3 orang */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 mb-10">
             {teamMembers.slice(0, 3).map((member, index) => (
               <div key={index} className="text-center">
@@ -178,7 +175,6 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Baris 2 - 2 orang (selang-seling) */}
           <div className="flex flex-col md:flex-row justify-center gap-10 md:gap-16">
             {teamMembers.slice(3, 5).map((member, index) => (
               <div key={index} className="text-center w-full md:w-72">

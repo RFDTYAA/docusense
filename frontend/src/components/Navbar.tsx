@@ -44,7 +44,6 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Find Papers Button - Dark default, hover blue */}
         <Link
           to="/search"
           className="flex items-center gap-2 bg-gray-900 hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors"
